@@ -1,0 +1,7 @@
+﻿@model BlogProjectRedeux.Data.Models.BlogPost
+
+<form method="post" action="/Home/EditBlogPost/@Model.Id">
+    <input type="text" value="@Model.Title" name="title" />
+    <textarea name="content">@Model.Content</textarea>
+    <input type="submit" value="Save" />
+</form>

@@ -1,0 +1,26 @@
+﻿@model List<BlogProjectRedeux.Data.Models.BlogPost>
+
+<form method="post" action="/Home/CreateBlogPost">
+    <h4>New Blog Post</h4>
+    <input type="text" name="title" placeholder="Blog Title" /><br />
+    <textarea name="content" placeholder="Blog Content"></textarea><br />
+    <input type="submit" class="btn btn-primary" />
+</form>
+
+@foreach (var BlogPost in Model)
+{
+    <h3>@BlogPost.Title</h3><text>&nbsp;-&nbsp;</text><h4>@BlogPost.PostTime</h4>
+    <p>@BlogPost.Content<a href="/Home/DeleteBlogPost/@BlogPost.Id" class="btn btn-danger">Delete</a><a href="/Home/EditblogPost/@BlogPost.Id" class="btn btn-info">Edit</a></p>
+    <h4>Comments</h4>
+    foreach (var Comment in BlogPost.Comments)
+    {
+        @Comment.Author <text>said: </text><br />
+        @Comment.Content <text>At: </text> @Comment.PostTime
+    }
+    <form method="post" action="/Home/CreateComment">
+        <h4>Post Comment</h4>
+        <input type="text" name="author" placeholder="Your name" />
+        <input type="text" name="content" placeholder="Comment" />
+        <input type="submit" class="btn btn-warning" />
+    </form>
+}
